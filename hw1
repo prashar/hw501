@@ -1,0 +1,44 @@
+(a|xy)*
+All sets of strings that have a combination of a's, xy's. The * implies the
+empty set is also included. 
+
+Generated:
+1. axy
+2. aaaxyxy
+
+Not Generated:
+1. yx
+2. 12
+
+b(oz)+o
+
+All sets of strings that start with 'b', end with 'o', and have either at least one
+or more of 'o' or 'z' in between. 
+
+Generated: 
+1. bozozo
+2. bozo 
+
+Not Generated:
+1. bo
+2. bzo
+
+((empty|0)1)*
+
+All set of strings that represent binary numbers, as well as the empty string. 
+Generated:
+1. 111111111
+2. 0101010101
+
+Not Generated:
+1. 9874
+2. e9r2
+
+--------
+
+2) 
+
+((aaa)+a*) | (b*)
+
+
+
