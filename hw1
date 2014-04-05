@@ -25,7 +25,7 @@ Not Generated:
 
 ((empty|0)1)*
 
-All set of strings that represent binary numbers, as well as the empty string. 
+All set of strings that represent binary numbers that have a combination of 1's or 01's. Also includes the empty string. The binary number cannot end with the last bit unset, which means it will always be odd.   
 Generated:
 1. 111111111
 2. 0101010101
@@ -36,9 +36,61 @@ Not Generated:
 
 --------
 
-2) 
+2a) 
 
-((aaa)+a*) | (b*)
+((b*ab*ab*aa*b*)*)
 
+Tested:
 
+aaa
+aaab
+bbbaaa
+bbbbbbbaabaaa
+ababab
+bbbbbbbbbbbabbbbbbbbbbabbbbbbbba
+bababa
+aaa
+
+------
+
+ababb
+bbbb
+
+2b)
+
+a*(aa|bb)*
+(((bb)*(ba))|((bb)*abba)|(bb)|(aa)|)*
+
+Tested:
+
+aabb
+bbbbabbaaa
+bbbbbaaaaa
+a
+abbabb
+bbbaabb
+
+aba
+b
+ababa
+abbab
+ababa
+aba
+abbab
+
+2c) 
+// All possible chars without vowels -> [^aeiou]
+//[^aeiou]*a[^aeiou]*e[^aeiou]*i[^aeiou]*o[^aeiou]*u[^aeiou]*
+// All lower case chars without vowels 
+allexceptvow = b | c | d | f | ... t | v | w | x | y | z
+[allexceptvow]*a[^allexceptvow]*e[allexceptvow]*i[allexceptvow]*o[allexceptvow]*u[allexceptvow]*
+
+Tested:
+aHEeDYiMNoQRuZDT
+
+aHEeDYiMNoQRuZDT
+
+5) Reg ex: 
+
+(/\*)(\*|[a-z]| |(\\r)|(\\n)|[0-9]|/)*(\*/)
 
