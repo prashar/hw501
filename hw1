@@ -1,3 +1,6 @@
+Homework 1 Written Part 
+------------------------
+
 (a|xy)*
 All sets of strings that have a combination of a's, xy's. The * implies the
 empty set is also included. 
@@ -5,10 +8,11 @@ empty set is also included.
 Generated:
 1. axy
 2. aaaxyxy
+3. {}   <--- implies empty string
 
 Not Generated:
-1. yx
-2. 12
+1. yax
+2. yxa 
 
 b(oz)+o
 
@@ -25,14 +29,16 @@ Not Generated:
 
 ((empty|0)1)*
 
-All set of strings that represent binary numbers that have a combination of 1's or 01's. Also includes the empty string. The binary number cannot end with the last bit unset, which means it will always be odd.   
+All set of strings that represent binary numbers that have a combination of 1's
+or 01's. Also includes the empty string. The binary number cannot end with the
+last bit unset, which means it will be odd.  
 Generated:
 1. 111111111
 2. 0101010101
 
 Not Generated:
-1. 9874
-2. e9r2
+1. 11110
+2. 00000
 
 --------
 
@@ -40,8 +46,10 @@ Not Generated:
 
 ((b*ab*ab*aa*b*)*)
 
-Tested:
+Tested Cases:
 
+Pass
+-------
 aaa
 aaab
 bbbaaa
@@ -51,18 +59,22 @@ bbbbbbbbbbbabbbbbbbbbbabbbbbbbba
 bababa
 aaa
 
+Fail
 ------
-
 ababb
 bbbb
 
 2b)
 
-a*(aa|bb)*
-(((bb)*(ba))|((bb)*abba)|(bb)|(aa)|)*
+ALL_A's = (a*)
+EVEN_SEQUENCE_WITH_B's = ((aa)*|(bb)*|(ab)*|(ba)*)*
+ANS = ALL_A's|EVEN_SEQUENCE_WITH_B's
+a*|(((aa)*|(bb)*|(ab)*|(ba)*)*)
 
 Tested:
 
+Pass
+--------
 aabb
 bbbbabbaaa
 bbbbbaaaaa
@@ -70,6 +82,8 @@ a
 abbabb
 bbbaabb
 
+Fail
+--------
 aba
 b
 ababa
@@ -91,6 +105,20 @@ aHEeDYiMNoQRuZDT
 aHEeDYiMNoQRuZDT
 
 5) Reg ex: 
+/\*([^*]|[\r\n0-9a-zA-Z]|(\*+([^/*]|[\r\n0-9a-zA-Z])))*\*+/
 
-(/\*)(\*|[a-z]| |(\\r)|(\\n)|[0-9]|/)*(\*/)
+Explanation: 
 
+Match the first /* with any character that is NOT * and between
+0-9,a-z,A-F,\r\n, OR between any number of *'s followed by any character but *
+and /. The comment can end with any number of *'s, but only one /
+
+Tested cases:
+
+/*******
+* MATCH ME
+******/
+DON'T MATCH
+/*
+ * MATCH ME
+ */
